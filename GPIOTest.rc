@@ -1,0 +1,343 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (Taiwan) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHT)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL
+#pragma code_page(950)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""res\\GPIOTest.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\logo.ico"
+#endif    // Chinese (Taiwan) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_GPIOTEST_DIALOG DIALOGEX 0, 0, 300, 201
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "PL-2303 4 GPIOTest Ver 1.0.0.1"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    COMBOBOX        IDC_COMBO_COM,18,6,54,69,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "&Open",IDC_BTN_OPENPORT,78,6,42,15
+    PUSHBUTTON      "&Close",IDC_BTN_CLOSEPORT,120,6,42,15
+    COMBOBOX        IDC_COMBO_SIZE,36,24,36,55,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_STOPBIT,36,42,36,44,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_PARITY,36,60,36,70,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_BAUDRATE,102,24,60,48,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "&Set Port Status",IDC_BTN_SETSTATUS,78,42,84,15
+    PUSHBUTTON      "&Get Port Status",IDC_BTN_GETSTATUS,78,60,84,15
+    GROUPBOX        "GP0",IDC_STATIC,7,78,77,36
+    GROUPBOX        "GP1",IDC_STATIC,87,78,77,36
+    CHECKBOX        "Output Enable",IDC_CHK_GP0_ENABLE,13,86,63,9
+    PUSHBUTTON      "Get",IDC_BTN_GP0_GET,13,100,22,10
+    PUSHBUTTON      "Set",IDC_BTN_GP0_SET,37,100,22,10,WS_DISABLED
+    EDITTEXT        IDC_EDIT_GP0_VAL,62,97,14,14,ES_AUTOHSCROLL | ES_NUMBER | WS_DISABLED
+    CHECKBOX        "Output Enable",IDC_CHK_GP1_ENABLE,92,86,63,9
+    PUSHBUTTON      "Get",IDC_BTN_GP1_GET,92,100,22,10
+    PUSHBUTTON      "Set",IDC_BTN_GP1_SET,117,100,22,10,WS_DISABLED
+    EDITTEXT        IDC_EDIT_GP1_VAL,142,97,14,14,ES_AUTOHSCROLL | ES_NUMBER | WS_DISABLED
+    LTEXT           "Size",IDC_STATIC,18,24,14,9
+    LTEXT           "S.Bit",IDC_STATIC,18,42,17,9
+    LTEXT           "Par",IDC_STATIC,18,60,12,9
+    LTEXT           "Rate",IDC_STATIC,78,24,17,9
+    LISTBOX         IDC_LIST_COMMAND_RESPONSE,167,7,126,180,LBS_NOINTEGRALHEIGHT | LBS_NOSEL | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Only for PL2303HXD",IDC_STATIC,7,125,158,62
+    GROUPBOX        "GP2",IDC_STATIC,7,137,77,36
+    CHECKBOX        "Output Enable",IDC_CHK_GP2_ENABLE,13,145,63,9
+    PUSHBUTTON      "Get",IDC_BTN_GP2_GET,13,159,22,10
+    PUSHBUTTON      "Set",IDC_BTN_GP2_SET,37,159,22,10,WS_DISABLED
+    EDITTEXT        IDC_EDIT_GP2_VAL,62,156,14,14,ES_AUTOHSCROLL | ES_NUMBER | WS_DISABLED
+    GROUPBOX        "GP3",IDC_STATIC,87,137,77,36
+    CHECKBOX        "Output Enable",IDC_CHK_GP3_ENABLE,93,145,63,9
+    PUSHBUTTON      "Get",IDC_BTN_GP3_GET,93,159,22,10
+    PUSHBUTTON      "Set",IDC_BTN_GP3_SET,117,159,22,10,WS_DISABLED
+    EDITTEXT        IDC_EDIT_GP3_VAL,142,156,14,14,ES_AUTOHSCROLL | ES_NUMBER | WS_DISABLED
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "CompanyName", "Prolific Technology Inc."
+            VALUE "FileDescription", "PL-2303 4 GPIO Test program"
+            VALUE "FileVersion", "1.0.0.1"
+            VALUE "InternalName", "PL-2303 4 GPIOTest.exe"
+            VALUE "LegalCopyright", "(c) Prolific Technology Inc.  All rights reserved."
+            VALUE "OriginalFilename", "PL-2303 4 GPIOTest.exe"
+            VALUE "ProductName", "PL-2303 4 GPIO Test program"
+            VALUE "ProductVersion", "1.0.0.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_GPIOTEST_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 293
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 194
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// RT_MANIFEST
+//
+
+IDR_MANIFEST            RT_MANIFEST             "res\\GPIOTest.manifest"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_GPIOTEST_DIALOG DLGINIT
+BEGIN
+    IDC_COMBO_COM, 0x403, 5, 0
+0x4f43, 0x314d, "\000" 
+    IDC_COMBO_COM, 0x403, 5, 0
+0x4f43, 0x324d, "\000" 
+    IDC_COMBO_COM, 0x403, 5, 0
+0x4f43, 0x334d, "\000" 
+    IDC_COMBO_COM, 0x403, 5, 0
+0x4f43, 0x344d, "\000" 
+    IDC_COMBO_COM, 0x403, 5, 0
+0x4f43, 0x354d, "\000" 
+    IDC_COMBO_COM, 0x403, 5, 0
+0x4f43, 0x364d, "\000" 
+    IDC_COMBO_COM, 0x403, 5, 0
+0x4f43, 0x374d, "\000" 
+    IDC_COMBO_COM, 0x403, 5, 0
+0x4f43, 0x384d, "\000" 
+    IDC_COMBO_COM, 0x403, 5, 0
+0x4f43, 0x394d, "\000" 
+    IDC_COMBO_COM, 0x403, 6, 0
+0x4f43, 0x314d, 0x0030, 
+    IDC_COMBO_COM, 0x403, 6, 0
+0x4f43, 0x314d, 0x0031, 
+    IDC_COMBO_COM, 0x403, 6, 0
+0x4f43, 0x314d, 0x0032, 
+    IDC_COMBO_COM, 0x403, 6, 0
+0x4f43, 0x314d, 0x0033, 
+    IDC_COMBO_COM, 0x403, 6, 0
+0x4f43, 0x314d, 0x0034, 
+    IDC_COMBO_COM, 0x403, 6, 0
+0x4f43, 0x314d, 0x0035, 
+    IDC_COMBO_COM, 0x403, 1, 0
+"\000" 
+    IDC_COMBO_SIZE, 0x403, 2, 0
+0x0035, 
+    IDC_COMBO_SIZE, 0x403, 2, 0
+0x0036, 
+    IDC_COMBO_SIZE, 0x403, 2, 0
+0x0037, 
+    IDC_COMBO_SIZE, 0x403, 2, 0
+0x0038, 
+    IDC_COMBO_SIZE, 0x403, 3, 0
+0x3631, "\000" 
+    IDC_COMBO_STOPBIT, 0x403, 2, 0
+0x0031, 
+    IDC_COMBO_STOPBIT, 0x403, 4, 0
+0x2e31, 0x0035, 
+    IDC_COMBO_STOPBIT, 0x403, 2, 0
+0x0032, 
+    IDC_COMBO_PARITY, 0x403, 5, 0
+0x6f4e, 0x656e, "\000" 
+    IDC_COMBO_PARITY, 0x403, 4, 0
+0x644f, 0x0064, 
+    IDC_COMBO_PARITY, 0x403, 5, 0
+0x7645, 0x6e65, "\000" 
+    IDC_COMBO_PARITY, 0x403, 5, 0
+0x614d, 0x6b72, "\000" 
+    IDC_COMBO_PARITY, 0x403, 6, 0
+0x7053, 0x6361, 0x0065, 
+    IDC_COMBO_BAUDRATE, 0x403, 2, 0
+0x0030, 
+    IDC_COMBO_BAUDRATE, 0x403, 3, 0
+0x3537, "\000" 
+    IDC_COMBO_BAUDRATE, 0x403, 4, 0
+0x3531, 0x0030, 
+    IDC_COMBO_BAUDRATE, 0x403, 4, 0
+0x3033, 0x0030, 
+    IDC_COMBO_BAUDRATE, 0x403, 4, 0
+0x3036, 0x0030, 
+    IDC_COMBO_BAUDRATE, 0x403, 5, 0
+0x3231, 0x3030, "\000" 
+    IDC_COMBO_BAUDRATE, 0x403, 5, 0
+0x3831, 0x3030, "\000" 
+    IDC_COMBO_BAUDRATE, 0x403, 5, 0
+0x3432, 0x3030, "\000" 
+    IDC_COMBO_BAUDRATE, 0x403, 5, 0
+0x3633, 0x3030, "\000" 
+    IDC_COMBO_BAUDRATE, 0x403, 5, 0
+0x3834, 0x3030, "\000" 
+    IDC_COMBO_BAUDRATE, 0x403, 5, 0
+0x3237, 0x3030, "\000" 
+    IDC_COMBO_BAUDRATE, 0x403, 5, 0
+0x3639, 0x3030, "\000" 
+    IDC_COMBO_BAUDRATE, 0x403, 6, 0
+0x3431, 0x3034, 0x0030, 
+    IDC_COMBO_BAUDRATE, 0x403, 6, 0
+0x3931, 0x3032, 0x0030, 
+    IDC_COMBO_BAUDRATE, 0x403, 6, 0
+0x3832, 0x3038, 0x0030, 
+    IDC_COMBO_BAUDRATE, 0x403, 6, 0
+0x3833, 0x3034, 0x0030, 
+    IDC_COMBO_BAUDRATE, 0x403, 6, 0
+0x3735, 0x3036, 0x0030, 
+    IDC_COMBO_BAUDRATE, 0x403, 7, 0
+0x3131, 0x3235, 0x3030, "\000" 
+    IDC_COMBO_BAUDRATE, 0x403, 7, 0
+0x3332, 0x3430, 0x3030, "\000" 
+    IDC_COMBO_BAUDRATE, 0x403, 7, 0
+0x3634, 0x3830, 0x3030, "\000" 
+    IDC_COMBO_BAUDRATE, 0x403, 7, 0
+0x3136, 0x3434, 0x3030, "\000" 
+    IDC_COMBO_BAUDRATE, 0x403, 7, 0
+0x3138, 0x3532, 0x3030, "\000" 
+    IDC_COMBO_BAUDRATE, 0x403, 7, 0
+0x3239, 0x3631, 0x3030, "\000" 
+    IDC_COMBO_BAUDRATE, 0x403, 8, 0
+0x3231, 0x3832, 0x3038, 0x0030, 
+    IDC_COMBO_BAUDRATE, 0x403, 8, 0
+0x3432, 0x3735, 0x3036, 0x0030, 
+    IDC_COMBO_BAUDRATE, 0x403, 8, 0
+0x3033, 0x3030, 0x3030, 0x0030, 
+    IDC_COMBO_BAUDRATE, 0x403, 8, 0
+0x3934, 0x3531, 0x3032, 0x0030, 
+    IDC_COMBO_BAUDRATE, 0x403, 8, 0
+0x3036, 0x3030, 0x3030, 0x0030, 
+    0
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#include "res\GPIOTest.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
