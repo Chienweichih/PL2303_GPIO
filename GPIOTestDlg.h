@@ -14,7 +14,8 @@ class CGPIOTestDlg : public CDialog
 	BOOL m_bGP2_Enable, m_bGP3_Enable;
 	CString m_comStr;
 
-	const LPCTSTR logName = "QSI_temp.log";
+	BOOL m_COM_Status;
+	const CString logName = CTime::GetCurrentTime().Format("QSI_Type_C_Switch_%Y_%B_%d_%H_%M_%S.log");
 
 // Construction
 public:

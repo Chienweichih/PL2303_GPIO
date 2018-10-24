@@ -54,4 +54,10 @@ void CGPIOTestDlg::OutputLog(CString msg)
 	{
 		fx->Delete();
 	}
+
+	// Not (Not found these msg)
+	if (!((-1 == msg.Find("USB port is not opened.")) && (-1 == msg.Find("FAILED"))))
+	{
+		m_COM_Status = FALSE;
+	}
 }

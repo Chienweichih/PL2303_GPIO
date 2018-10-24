@@ -22,12 +22,11 @@ CGPIOTestDlg::CGPIOTestDlg(CWnd* pParent /*=NULL*/)
 	, m_bGP1Enable(FALSE)
 	, m_bGP2_Enable(FALSE)
 	, m_bGP3_Enable(FALSE)
+	, m_COM_Status(FALSE)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 
 	m_hCOM = m_hDrv = INVALID_HANDLE_VALUE;
-
-	DeleteFile(logName);
 }
 
 void CGPIOTestDlg::DoDataExchange(CDataExchange* pDX)
