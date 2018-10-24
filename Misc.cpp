@@ -4,10 +4,14 @@
 
 void CGPIOTestDlg::AddResponseString(CString& str)
 {
+#if 0
 	CListBox *lb = (CListBox *)GetDlgItem(IDC_LIST_COMMAND_RESPONSE);
 	int nIndex = lb->AddString(str);
 	if (nIndex != LB_ERR || nIndex != LB_ERRSPACE)
 		lb->SetCurSel(nIndex);
+#else
+	OutputLog(str);
+#endif
 }
 
 void CGPIOTestDlg::CheckWindowsVersion()
@@ -34,5 +38,20 @@ void CGPIOTestDlg::OpenSymbolicPort()
 	} else {
 		m_hDrv = CreateFile("\\\\.\\USBCOM-1", GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE,
 				NULL, OPEN_EXISTING, 0, NULL);
+	}
+}
+
+void CGPIOTestDlg::OutputLog(CString msg)
+{
+	try
+	{
+		CStdioFile outFile(logName, CFile::modeNoTruncate | CFile::modeCreate | CFile::modeWrite | CFile::typeText);
+		outFile.SeekToEnd();
+		outFile.WriteString(msg + '\n');
+		outFile.Close();
+	}
+	catch (CFileException *fx)
+	{
+		fx->Delete();
 	}
 }

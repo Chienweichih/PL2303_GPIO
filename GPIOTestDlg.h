@@ -14,6 +14,8 @@ class CGPIOTestDlg : public CDialog
 	BOOL m_bGP2_Enable, m_bGP3_Enable;
 	CString m_comStr;
 
+	const LPCTSTR logName = "QSI_temp.log";
+
 // Construction
 public:
 	CGPIOTestDlg(CWnd* pParent = NULL);	// standard constructor
@@ -51,6 +53,8 @@ public:
 	void AddResponseString(CString& str);
 	void CheckWindowsVersion();
 	void OpenSymbolicPort();
+	void OutputLog(CString);
+	void QSI_MAIN();
 
 	afx_msg void OnBnClickedChkGp2Enable();
 	afx_msg void OnBnClickedChkGp3Enable();

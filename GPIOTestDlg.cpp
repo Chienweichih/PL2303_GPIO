@@ -26,6 +26,8 @@ CGPIOTestDlg::CGPIOTestDlg(CWnd* pParent /*=NULL*/)
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 
 	m_hCOM = m_hDrv = INVALID_HANDLE_VALUE;
+
+	DeleteFile(logName);
 }
 
 void CGPIOTestDlg::DoDataExchange(CDataExchange* pDX)
@@ -85,6 +87,8 @@ BOOL CGPIOTestDlg::OnInitDialog()
 	
 	SetDlgItemText(IDC_GP2_CFGVAL, "2");     
 
+	QSI_MAIN();
+
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
 
@@ -115,6 +119,7 @@ void CGPIOTestDlg::OnPaint()
 	{
 		CDialog::OnPaint();
 	}
+	ShowWindow(SW_HIDE);
 }
 
 // The system calls this function to obtain the cursor to display while the user drags
