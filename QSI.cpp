@@ -2,7 +2,223 @@
 #include "GPIOTest.h"
 #include "GPIOTestDlg.h"
 
+#include <io.h>
+#include <fcntl.h>
+#include <vector>
+
+#include "Device.h"
+#include "MessageBoxTimeout.h"
+
+void InitConsoleWindow()
+{
+	AllocConsole();
+	HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
+	int hCrt = _open_osfhandle((long)handle, _O_TEXT);
+	FILE * hf = _fdopen(hCrt, "w");
+	*stdout = *hf;
+}
+
+void CGPIOTestDlg::DisConnectAll(int comPort)
+{
+	const CString str_high = "1";
+	const CString str_low = "0";
+
+	// Set GPIO 1 to "LOW"
+	((CEdit *)GetDlgItem(IDC_EDIT_GP1_VAL))->SetWindowText(str_low);
+	OnBnClickedBtnGp1Set();
+
+	// Set GPIO 2 to "LOW"
+	((CEdit *)GetDlgItem(IDC_EDIT_GP2_VAL))->SetWindowText(str_low);
+	OnBnClickedBtnGp2Set();
+
+	// Set GPIO 3 to "HIGH"
+	((CEdit *)GetDlgItem(IDC_EDIT_GP3_VAL))->SetWindowText(str_high);
+	OnBnClickedBtnGp3Set();
+
+	MsgBoxTimeOut(1000);
+	Sleep(4000);
+}
+
+void CGPIOTestDlg::ConnectCC(int comPort, BOOL isCC1)
+{
+	const CString str_high = "1";
+	const CString str_low = "0";
+
+	if (isCC1)
+	{
+		// Set GPIO 2 to "HIGH"
+		((CEdit *)GetDlgItem(IDC_EDIT_GP2_VAL))->SetWindowText(str_high);
+		OnBnClickedBtnGp2Set();
+	}
+	else
+	{
+		// Set GPIO 1 to "HIGH"
+		((CEdit *)GetDlgItem(IDC_EDIT_GP1_VAL))->SetWindowText(str_high);
+		OnBnClickedBtnGp1Set();
+	}
+
+	// Set GPIO 3 to "LOW"
+	((CEdit *)GetDlgItem(IDC_EDIT_GP3_VAL))->SetWindowText(str_low);
+	OnBnClickedBtnGp3Set();
+
+	MsgBoxTimeOut(1000);
+}
+
 void CGPIOTestDlg::QSI_MAIN()
+{
+	InitConsoleWindow();
+
+	CString str;
+	int comPort = -1;
+	int diskNum = 0;
+	std::vector<CString> cc1Disks;
+	std::vector<CString> cc2Disks;
+
+	CTime tt = CTime::GetCurrentTime();
+	OutputLog(tt.Format("[%Y-%B-%d %A, %H:%M:%S]"));
+
+	for (int i = 0; i < __argc; ++i)
+	{
+		str.Format(_T("(%d) %s"), i, __argv[i]);
+		OutputLog(str);
+
+		if (i == 1)
+		{
+			comPort = atoi(__argv[i]) - 1;
+		}
+
+		if (i == 2)
+		{
+			diskNum = atoi(__argv[i]);
+		}
+	}
+
+	if (__argc != 3)
+	{
+		OutputLog(_T("Argument number not correct, check it."));
+		OutputLog(_T("FAIL AT STEP 0"));
+		EndDialog(IDCANCEL);
+		return;
+	}
+
+	// Link to PL-2303 com port
+	((CComboBox *)GetDlgItem(IDC_COMBO_COM))->SetCurSel(comPort);
+	OnBnClickedBtnOpenport();
+	if (m_hCOM == INVALID_HANDLE_VALUE)
+	{
+		if ((comPort + 1) > 0)
+		{
+			str.Format(_T("COM%d IS WRONG PORT OR DISCONNECTED"), (comPort + 1));
+			OutputLog(str);
+		}
+		else
+		{
+			OutputLog(_T("WRONG COM PORT"));
+		}
+		OutputLog(_T("FAIL AT STEP 1"));
+		EndDialog(IDCANCEL);
+		return;
+	}
+	m_COM_Status = TRUE;
+
+	OnBnClickedChkGp1Enable();
+	OnBnClickedChkGp2Enable();
+	OnBnClickedChkGp3Enable();
+
+#ifdef DEBUG
+	if (m_COM_Status == FALSE)
+	{
+		OutputLog(_T("FAIL AT STEP 2"));
+		EndDialog(IDCANCEL);
+		return;
+	}
+#endif
+
+	for (DWORD i = 0; i < 2; ++i)
+	{
+		DisConnectAll(comPort);
+
+#ifdef DEBUG
+		if (m_COM_Status == FALSE)
+		{
+			str.Format(_T("FAIL AT STEP 3-%d-1"), i);
+			OutputLog(str);
+			EndDialog(IDCANCEL);
+			return;
+		}
+#endif
+
+		std::vector<CString> disconnectDisks;
+		disconnectDisks = GetDisks(disconnectDisks);
+
+		ConnectCC(comPort, ((i == 0)? TRUE: FALSE));
+		for (int cnt = 0; cnt < 20; ++cnt)
+		{
+			if (diskNum == GetDisksNum(disconnectDisks.size()))
+			{
+				break;
+			}
+			Sleep(1000);
+		}
+
+		if (i == 0)
+		{
+			cc1Disks = GetDisks(disconnectDisks);
+		}
+		else
+		{
+			cc2Disks = GetDisks(disconnectDisks);
+		}
+
+#ifdef DEBUG
+		if (m_COM_Status == FALSE)
+		{
+			str.Format(_T("FAIL AT STEP 3-%d-2"), i);
+			OutputLog(str);
+			EndDialog(IDCANCEL);
+			return;
+		}
+#endif
+	}
+
+	OutputLog("==================== CC1 ====================");
+	for (std::vector<CString>::iterator iter = cc1Disks.begin(); iter != cc1Disks.end(); ++iter)
+	{
+		OutputLog(*iter);
+	}
+	OutputLog("==================== CC1 ====================");
+
+	OutputLog("==================== CC2 ====================");
+	for (std::vector<CString>::iterator iter = cc2Disks.begin(); iter != cc2Disks.end(); ++iter)
+	{
+		OutputLog(*iter);
+	}
+	OutputLog("==================== CC2 ====================");
+
+	str.Format("CC1 found %d disk", cc1Disks.size());
+	if (cc1Disks.size() == diskNum)
+	{
+		str += _T(", Pass");
+	}
+	else
+	{
+		str += _T(", Fail");
+	}
+	str.Format("%s; CC2 found %d disk", ((LPCTSTR)str), cc2Disks.size());
+	if (cc2Disks.size() == diskNum)
+	{
+		str += _T(", Pass");
+	}
+	else
+	{
+		str += _T(", Fail");
+	}
+	OutputLog(str);
+
+	EndDialog(IDOK);
+}
+
+void CGPIOTestDlg::QSI_MAIN_SA()
 {
 	const CString str_high = "1";
 	const CString str_low = "0";

@@ -88,6 +88,9 @@ BOOL CGPIOTestDlg::OnInitDialog()
 
 	QSI_MAIN();
 
+	// close port
+	OnBnClickedBtnCloseport();
+
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
 

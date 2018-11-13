@@ -10,7 +10,12 @@ void CGPIOTestDlg::AddResponseString(CString& str)
 	if (nIndex != LB_ERR || nIndex != LB_ERRSPACE)
 		lb->SetCurSel(nIndex);
 #else
-	OutputLog(str);
+	// Not (Not found these msg)
+	if (!((-1 == str.Find("USB port is not opened.")) && (-1 == str.Find("FAILED"))))
+	{
+		m_COM_Status = FALSE;
+		OutputLog(str);
+	}
 #endif
 }
 
@@ -43,21 +48,5 @@ void CGPIOTestDlg::OpenSymbolicPort()
 
 void CGPIOTestDlg::OutputLog(CString msg)
 {
-	try
-	{
-		CStdioFile outFile(logName, CFile::modeNoTruncate | CFile::modeCreate | CFile::modeWrite | CFile::typeText);
-		outFile.SeekToEnd();
-		outFile.WriteString(msg + '\n');
-		outFile.Close();
-	}
-	catch (CFileException *fx)
-	{
-		fx->Delete();
-	}
-
-	// Not (Not found these msg)
-	if (!((-1 == msg.Find("USB port is not opened.")) && (-1 == msg.Find("FAILED"))))
-	{
-		m_COM_Status = FALSE;
-	}
+	printf(msg + '\n');
 }

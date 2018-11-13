@@ -15,7 +15,6 @@ class CGPIOTestDlg : public CDialog
 	CString m_comStr;
 
 	BOOL m_COM_Status;
-	const CString logName = CTime::GetCurrentTime().Format("QSI_Type_C_Switch_%Y_%B_%d_%H_%M_%S.log");
 
 // Construction
 public:
@@ -55,7 +54,10 @@ public:
 	void CheckWindowsVersion();
 	void OpenSymbolicPort();
 	void OutputLog(CString);
+	void DisConnectAll(int);
+	void ConnectCC(int, BOOL);
 	void QSI_MAIN();
+	void QSI_MAIN_SA();
 
 	afx_msg void OnBnClickedChkGp2Enable();
 	afx_msg void OnBnClickedChkGp3Enable();
