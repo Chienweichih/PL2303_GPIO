@@ -1,6 +1,16 @@
-================================================================================
-    MICROSOFT FOUNDATION CLASS LIBRARY : GPIOTest Project Overview
-===============================================================================
+PL2303 GPIO 工具
+===============
+
+使用 PL2303 USB to GPIO 晶片實作出的產測工具。
+
+透過對 GPIO 的操作，控制 Type-C cable 的 CC1, CC2 及 VBus 開關，來做出 Type-C cable 正反插的動作。
+
+這個工具不僅能夠省下人力來插拔 DUT，也能在接上電腦後自動判斷出硬碟的名稱等等資訊，用於自動化處理相關流程。
+
+---
+
+MICROSOFT FOUNDATION CLASS LIBRARY : GPIOTest Project Overview
+--------------------------------------------------------------    
 
 The application wizard has created this GPIOTest application for 
 you.  This application not only demonstrates the basics of using the Microsoft 
